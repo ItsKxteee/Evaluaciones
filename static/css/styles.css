@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.logo {
+    height: 60px;
+}
+
+.titulo-principal {
+    color: #1d3557;
+    font-weight: bold;
+}
