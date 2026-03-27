@@ -226,13 +226,22 @@ WSGI_APPLICATION = 'primer_entregable.wsgi.application'
 # ========================
 # BASE DE DATOS
 # ========================
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+#         conn_max_age=600,
+#         ssl_require=not DEBUG
+#     )
+# }
+
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        ssl_require=not DEBUG
+    'default': dj_database_url.config(
+        # Esto lee la variable DATABASE_URL de Render
+        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3'),
+        conn_max_age=600
     )
 }
+
 
 # ========================
 # VALIDACIÓN DE PASSWORDS
@@ -268,12 +277,11 @@ if not DEBUG:
 # ========================
 # MEDIA FILES (LOCAL + AWS)
 # ========================
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = os.getenv("AKIAYFBSVJJOMTQGSFFW") # AKIAYFBSVJJOMTQGSFFW
+AWS_SECRET_ACCESS_KEY = os.getenv("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") # 2aLKlIGNpfxzPyEy+XLHpd5Li9uoL/PHcza1zX3t
 
-# ⚠️ CAMBIAR DESPUÉS
-AWS_STORAGE_BUCKET_NAME = "TU_BUCKET_AQUI"
-AWS_S3_REGION_NAME = "TU_REGION_AQUI"  # ejemplo: "sa-east-1"
+AWS_STORAGE_BUCKET_NAME = "django-media-kate-2026" #django-media-kate-2026
+AWS_S3_REGION_NAME = "sa-east-2"  # "sa-east-1" (tiene que ser 2)
 
 if DEBUG:
     MEDIA_URL = '/media/'
@@ -282,7 +290,7 @@ else:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 # ========================
-# EMAIL (NO TOCAMOS)
+# EMAIL (NO TOCAR)
 # ========================
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
