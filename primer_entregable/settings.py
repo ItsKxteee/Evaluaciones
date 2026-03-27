@@ -227,8 +227,8 @@ WSGI_APPLICATION = 'primer_entregable.wsgi.application'
 # BASE DE DATOS
 # ========================
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    "default": dj_database_url.config(
+        default=os.environ.get("postgresql://db_evaluaciones_user:5E0potf44dNQO0xAUZwrLXqiOOuntSYP@dpg-d72s5apr0fns73afjt7g-a/db_evaluaciones"),  # usa la URL de Postgres de Render
         conn_max_age=600,
         ssl_require=not DEBUG
     )
