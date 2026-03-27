@@ -228,7 +228,7 @@ WSGI_APPLICATION = 'primer_entregable.wsgi.application'
 # ========================
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("postgresql://db_evaluaciones_user:5E0potf44dNQO0xAUZwrLXqiOOuntSYP@dpg-d72s5apr0fns73afjt7g-a/db_evaluaciones"),  # usa la URL de Postgres de Render
+        default=os.environ.get("DATABASE_URL"),  # aquí solo pones el nombre de la variable
         conn_max_age=600,
         ssl_require=not DEBUG
     )
